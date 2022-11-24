@@ -117,7 +117,7 @@ const AuthProvider = ({children}) => {
     useEffect( () =>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
             
-            fetch(`http://localhost:5000/admin?email=${currentUser?.email}`)
+            fetch(`${process.env.REACT_APP_API}/admin?email=${currentUser?.email}`)
             .then(res => res.json())
             .then(data => {
                 if(data.success){

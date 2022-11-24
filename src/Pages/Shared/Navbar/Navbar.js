@@ -23,7 +23,7 @@ const Navbar = () => {
             .catch(error => console.error(error))
     };
     return (
-        <nav className={` flex justify-between items-center w-full bg-[#01141F] h-[70px] px-10 shadow-gray-300 ${open? 'mb-72' : 'mb-4'} border-b-1`}>
+        <nav className={` flex justify-between items-center w-full bg-[#1877F2] h-[70px] px-10 shadow-gray-300 ${open? 'mb-72' : 'mb-4'} border-b-1`}>
           <div>
             <Link to='/' className='lg:text-5xl sm:text-4xl text-2xl text-yellow-100 font-serif sm:text-start md:flex lg:flex xl:flex '>Swap Laptop</Link>
             

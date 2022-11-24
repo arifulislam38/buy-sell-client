@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 // import loginImage from '../../assets/login-new.png';
-import UseTitle from '../../Hooks/Title/Title';
 import Lottie from 'react-lottie';
-import * as animationData from './login.json';
 import { AuthContext } from '../../AuthContext/AuthProvider';
+import UseTitle from '../../Hooks/Title/Title';
+import * as animationData from './login.json';
 
 
 const Login = () => {
@@ -80,7 +80,6 @@ const Login = () => {
                     .then(data => {
                         
                         if(data.success){
-                            console.log('success')
                             localStorage.setItem('user-token', data.token);
                             toast.success('successfully login');
                             navigate(from, { replace: true });
