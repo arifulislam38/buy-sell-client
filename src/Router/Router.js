@@ -38,6 +38,34 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/allusers',
                         element: <AllUsers></AllUsers>
+                    },
+                    {
+                        path: '/dashboard/allbuyers',
+                        element: <AllUsers></AllUsers>
+                    },
+                    {
+                        path: '/dashboard/allsellers',
+                        element: <AllUsers></AllUsers>
+                    },
+                    {
+                        path: '/dashboard/addproducts',
+                        element: <AllUsers></AllUsers>
+                    },
+                    {
+                        path: '/dashboard/reportproduct',
+                        element: <AllUsers></AllUsers>
+                    },
+                    {
+                        path: '/dashboard/mybuyers',
+                        element: <AllUsers></AllUsers>
+                    },
+                    {
+                        path: '/dashboard/myorders',
+                        element: <AllUsers></AllUsers>
+                    },
+                    {
+                        path: '/dashboard/myproducts',
+                        element: <AllUsers></AllUsers>
                     }
                 ]
             }
