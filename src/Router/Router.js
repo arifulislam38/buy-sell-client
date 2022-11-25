@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Main from "../Layouts/Main/Main";
+import AllUsers from "../Pages/AllUsers/AllUsers";
 import Category from "../Pages/Category/Category";
 import ErrorPage from "../Pages/ErrorElement/ErrorPage";
 import Home from "../Pages/Home/Home";
@@ -28,6 +30,16 @@ const router = createBrowserRouter([
                 path: '/category/:id',
                 element: <Category></Category>,
                 loader: ({params}) => fetch(`${process.env.REACT_APP_API}/category/${params.id}`)
+            },
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>,
+                children: [
+                    {
+                        path: '/dashboard/allusers',
+                        element: <AllUsers></AllUsers>
+                    }
+                ]
             }
         ]
     }
