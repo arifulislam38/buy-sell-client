@@ -27,34 +27,29 @@ const Login = () => {
         signIn(email,password)
         .then(result =>{
             const user = result.user;
-
             const currentUser = {
-                    email: user.email,
-                    role: 'admin'
+                    email: user.email
                 };
-
-            fetch(`${process.env.REACT_APP_API}/createuser`, {
-                    method: 'PUT',
+            fetch(`${process.env.REACT_APP_API}/jwt`, {
+                    method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify(currentUser)
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        
-                        if(data.success){
-                            console.log('success')
-                            localStorage.setItem('user-token', data.token);
+                .then(res=> res.json())
+                .then(data => {
+                    if(data.success){
+                            localStorage.setItem('accessToken', data.token);
                             
                             toast.success('successfully login');
                             navigate(from, { replace: true });
                             setLoading(false);
                             event.target.reset();
                         }else{
-                            toast.error('CanNot log in user')
+                            toast.error('Cannot log in user')
                         }
-                    });    
+                })    
          })
             .catch(error => console.error(error));
            
@@ -62,35 +57,34 @@ const Login = () => {
 
     const googlesignin = () =>{
         googleLogin()
-        .then(result => {
+        .then(result =>{
             const user = result.user;
-           const currentUser = {
-                    email: user.email,
-                    role: 'admin'
+            const currentUser = {
+                    email: user.email
                 };
-                
-            fetch(`${process.env.REACT_APP_API}/createuser`, {
-                    method: 'PUT',
+            fetch(`${process.env.REACT_APP_API}/jwt`, {
+                    method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
                     body: JSON.stringify(currentUser)
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        
-                        if(data.success){
-                            localStorage.setItem('user-token', data.token);
+                .then(res=> res.json())
+                .then(data => {
+                    if(data.success){
+                            localStorage.setItem('accessToken', data.token);
+                            
                             toast.success('successfully login');
                             navigate(from, { replace: true });
                             setLoading(false);
                         }else{
-                            toast.error('CanNot log in user')
+                            toast.error('Cannot log in user')
                         }
-                    });    
+                })    
          })
-        .catch(error => console.error(error))
-    }
+            .catch(error => console.error(error));
+           
+        };
 
 
     const defaultOptions = {
@@ -116,15 +110,15 @@ const Login = () => {
                 <div className='sm:w-full sm:p-8'>
                     <form onSubmit={handleSubmit} className='sm:w-full flex flex-col gap-5'>
                         
-                        <input className='lg:w-[80%] w-full mx-auto p-4 bg-transparent border rounded text-yellow-50' type="email" name='email' placeholder='Your Email' />
+                        <input className='lg:w-[80%] w-full mx-auto p-4 bg-transparent border rounded text-black' type="email" name='email' placeholder='Your Email' />
 
-                        <input className='lg:w-[80%] w-full mx-auto p-4 bg-transparent border rounded text-yellow-50' type="password" name='password' placeholder='Password' />
+                        <input className='lg:w-[80%] w-full mx-auto p-4 bg-transparent border rounded text-black' type="password" name='password' placeholder='Password' />
 
-                        <button type="submit" className='lg:w-[80%] w-full mx-auto text-xl text-yellow-50 font-serif font-bold p-4 border rounded'>Log In</button>
+                        <button type="submit" className='lg:w-[80%] w-full mx-auto text-xl text-black font-serif font-bold p-4 border rounded'>Log In</button>
 
-                        <button onClick={googlesignin} className='lg:w-[80%] w-full mx-auto text-xl text-yellow-50 font-serif font-bold p-4 border rounded'>Log In with Google</button>
+                        <button onClick={googlesignin} className='lg:w-[80%] w-full mx-auto text-xl text-black font-serif font-bold p-4 border rounded'>Log In with Google</button>
 
-                        <p className='text-xl font-serif text-gray-200 lg:w-[80%] w-full mx-auto'>New to this site? <Link to='/register' className='text-yellow-50 underline'>Create an account</Link></p>
+                        <p className='text-xl font-serif text-gray-200 lg:w-[80%] w-full mx-auto'>New to this site? <Link to='/register' className='text-black underline'>Create an account</Link></p>
                     </form>
                 </div>
             </div>

@@ -1,82 +1,3 @@
-// import React, { createContext, useEffect, useState } from 'react';
-// import app from '../Firebase/firebase.config';
-// import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
-
-
-// export const AuthContext = createContext();
-
-// const auth =getAuth(app);
-// const Googleprovider = new GoogleAuthProvider();
-
-
-// const AuthProvider = ({children}) => {
-
-//     const [user, setUser] = useState(null);
-//     const [loading, setLoading] = useState(true);
-
-//     useEffect( () =>{
-//         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
-            
-//             setUser(currentUser);
-//             setLoading(false);
-//         });
-
-//         return () =>{
-//             return unsubscribe();
-//         }
-//     }, []);
-
-//     const createUser = (email, password) => {
-//         setLoading(true);
-//         return createUserWithEmailAndPassword(auth, email, password);
-//     };
-
-//     const login = (email, password) =>{
-//         setLoading(true);
-//         return signInWithEmailAndPassword(auth, email, password);
-//     };
-
-//     const googleLogin = () =>{
-//         setLoading(true)
-//         return signInWithPopup(auth, Googleprovider);
-//     };
-
-//     const updateUser = (name, image) =>{
-//         setLoading(true)
-//         return updateProfile(auth.currentUser,{displayName: name, photoURL: image});
-//     }
-
-//     const logOut = () =>{
-//         localStorage.removeItem('genius-token');
-//         return signOut(auth);
-//     };
-
-//     const authinfo = {
-//         loading,
-//         setLoading,
-//         user,
-//         createUser,
-//         login,
-//         googleLogin,
-//         updateUser,
-//         logOut
-//     };
-//     return (
-//         <AuthContext.Provider value={authinfo}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// };
-
-// export default AuthProvider;
-
-
-
-
-
-
-
-
 
 import React, { createContext, useEffect, useState } from 'react';
 import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
@@ -88,7 +9,8 @@ const Googleprovider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [isAdmin, setIsAdmin] = useState(null);
+    const [accType, setAccType] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
     const createUser = (email, password) =>{
         setLoading(true);
@@ -121,16 +43,21 @@ const AuthProvider = ({children}) => {
             .then(res => res.json())
             .then(data => {
                 if(data.success){
-                    setIsAdmin(data?.data?.role)
+                    setAccType(data.data.type)
+                    if(data.data.role ==='admin'){
+                        setIsAdmin(true)
+                    }
+                    
                 }
             } );
             setUser(currentUser);
             setLoading(false);
             console.log('user observing',currentUser);
+            console.log('admin',isAdmin,accType)
         });
 
         return () => unsubscribe();
-    }, [isAdmin])
+    }, [isAdmin,accType]);
 
     const authInfo = {
         createUser,
@@ -141,7 +68,8 @@ const AuthProvider = ({children}) => {
         user,
         loading,
         setLoading,
-        isAdmin
+        isAdmin,
+        accType
     }
     return (
         <AuthContext.Provider value={authInfo}>
