@@ -19,7 +19,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "10/12/21"
+      "time": "10/12/21",
+      "wish": "",
+      "report": ""
     },
     {
       "name": "Asus X441MA Celeron Dual Core 14",
@@ -41,7 +43,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "10/10/21"
+      "time": "10/10/21",
+      "wish": "",
+      "report": ""
     },
     {
       "name": "Asus X570ZD Ryzen 5 Gaming Laptop",
@@ -63,7 +67,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "04/06/20"
+      "time": "04/06/20",
+      "wish": "",
+      "report": ""
     },
 
 
@@ -90,7 +96,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "10/11/22"
+      "time": "10/11/22",
+      "wish": "",
+      "report": ""
     },
     {
       "name": "HP EliteBook X360 1030 G2 Core i7 7th Gen",
@@ -112,7 +120,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "03/04/21"
+      "time": "03/04/21",
+      "wish": "",
+      "report": ""
     },
     {
       "name": "HP Pavilion 15-eh1070wm Ryzen 7 Slim",
@@ -134,7 +144,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "26/06/22"
+      "time": "26/06/22",
+      "wish": "",
+      "report": ""
     },
 
 
@@ -161,7 +173,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "04/05/21"
+      "time": "04/05/21",
+      "wish": "",
+      "report": ""
     },
     {
       "name": "Dell Latitude 7480 Core i7 7th Gen",
@@ -183,7 +197,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "10/10/20"
+      "time": "10/10/20",
+      "wish": "",
+      "report": ""
     },
     {
       "name": "Dell XPS 13 9365 2-in-1 Core i5 8th Gen",
@@ -205,7 +221,9 @@
         "mobile": "",
         "location": ""
       },
-      "time": "08/08/21"
+      "time": "08/08/21",
+      "wish": "",
+      "report": ""
     }
     
 ]

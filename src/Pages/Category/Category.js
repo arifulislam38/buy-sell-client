@@ -21,7 +21,32 @@ const Category = () => {
         event.preventDefault();
         toast.success('Your item is Booked');
         setModal(false)
-    }
+    };
+
+    const handleWishList = (id) =>{
+        fetch(`${process.env.REACT_APP_API}/wishlist?id=${id}&email=${user.email}`,{
+            method: 'POST'
+        })
+        .then(res=> res.json())
+        .then(data => {
+            if(data.success){
+                toast.success('Successfully added to the wishlist')
+            }
+        })
+    };
+
+
+    const handleReport = (id) =>{
+        fetch(`${process.env.REACT_APP_API}/report?id=${id}&email=${user.email}`,{
+            method: 'POST'
+        })
+        .then(res=> res.json())
+        .then(data => {
+            if(data.success){
+                toast.success('Successfully informed to the admin about this product')
+            }
+        })
+    };
 
     
 // console.log(laptop)
@@ -42,8 +67,8 @@ const Category = () => {
                             <p>Posted Date: {product.time}</p>
                             <p><span className='bg-gray-300 px-2 text-xl rounded'>Seller: {product.seller.email}</span></p>
                             <div className='flex gap-7'>
-                                <button className='btn btn-sm bg-red-400 border-0'>Add to Wishlist</button>
-                                <button className='btn btn-sm bg-slate-400 border-0 text-black'>Report</button>
+                                <button onClick={()=>handleWishList(product._id)} className='btn btn-sm bg-red-400 border-0'>Add to Wishlist</button>
+                                <button onClick={()=>handleReport(product._id)} className='btn btn-sm bg-slate-400 border-0 text-black'>Report</button>
                             </div>
                             <label onClick={()=>{setProduct(product);setModal(true)}} htmlFor="bookingModal" className="btn bg-blue-600 py-2 rounded-sm text-2xl font-serif font-semibold border-0">Book Now</label>
                         </div>
