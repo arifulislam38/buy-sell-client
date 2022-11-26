@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-const AllSellers = () => {
-    const [sellers, setSellers] = useState([]);
+const AllBuyers = () => {
+    const [buyers, setBuyers] = useState([]);
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API}/allsellers`)
+        fetch(`${process.env.REACT_APP_API}/allbuyers`)
         .then(res => res.json())
         .then(data=>{
             if(data.success){
-                setSellers(data.data)
+                setBuyers(data.data)
             }
         })
     },[loading])
 
 
     const handleDelete = (id) =>{
-        const confirm = window.confirm();
-        if(confirm){
-            fetch(`${process.env.REACT_APP_API}/allsellers?id=${id}`,{
+        fetch(`${process.env.REACT_APP_API}/allsellers?id=${id}`,{
             method: 'POST'
         })
         .then(res=>res.json())
@@ -30,15 +27,15 @@ const AllSellers = () => {
                 setLoading(false)
             }
         })
-        }
     };
+
 
 
     return (
         <>
            {
-            sellers.length === 0 ? 
-                <div className='grid place-items-center h-screen flex-1'><h1 className='text-5xl font-semibold font-serif text-red-300'>No Data Found</h1></div> 
+            buyers.length === 0 ? 
+                <div className='grid place-items-center flex-1 h-screen'><h1 className='text-5xl font-semibold font-serif text-red-300'>No Data Found</h1></div> 
                 : 
                 <div className="overflow-x-autocborder flex-1 p-3 w-full">
                 <table className="table w-full">
@@ -48,12 +45,13 @@ const AllSellers = () => {
                         <th>SL</th>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Action</th>
+                        <th>Type</th>
+                        <th>admin</th>
                     </tr>
                     </thead>
                     <tbody>
                         {
-                            sellers?.map((user,i)=>{
+                            buyers?.map((user,i)=>{
                                 return <tr className="hover">
                                     <th>{i+1}</th>
                                     <td><div className="avatar">
@@ -63,7 +61,8 @@ const AllSellers = () => {
                                         </div>
                                     </td>
                                     <td>{user.name}</td>
-                                    <td><button onClick={()=>handleDelete(user._id)} className='btn btn-sm bg-red-400'>Delete</button></td>
+                                    <td><button className='rounded-lg p-1 bg-blue-500'>Make Admin</button></td>
+                                    <td><button onClick={()=>handleDelete(user._id)} className='rounded-lg p-1 bg-red-400'>Delete</button></td>
                                 </tr>
                             })
                         }
@@ -76,4 +75,4 @@ const AllSellers = () => {
     );
 };
 
-export default AllSellers;
+export default AllBuyers;

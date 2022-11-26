@@ -1,43 +1,44 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../AuthContext/AuthProvider';
 
-const AllSellers = () => {
-    const [sellers, setSellers] = useState([]);
-    const [loading, setLoading] = useState(true)
+const MyOrders = () => {
+    const {user} = useContext(AuthContext);
+    const [ordersData, setOrdersData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API}/allsellers`)
+        fetch(`${process.env.REACT_APP_API}/myorders?email=${user?.email}`)
         .then(res => res.json())
         .then(data=>{
             if(data.success){
-                setSellers(data.data)
+                setOrdersData(data.data)
             }
         })
-    },[loading])
+    },[loading, user?.email]);
 
+    // console.log(ordersData.length)
 
     const handleDelete = (id) =>{
         const confirm = window.confirm();
         if(confirm){
-            fetch(`${process.env.REACT_APP_API}/allsellers?id=${id}`,{
+            fetch(`${process.env.REACT_APP_API}/myorders?id=${id}`,{
             method: 'POST'
         })
         .then(res=>res.json())
         .then(data=> {
             if(data.success){
-                toast.success('Successfully Delted the Seller');
+                toast.success('Successfully Delted the order');
                 setLoading(false)
             }
         })
         }
     };
-
-
     return (
-        <>
+        
+            <>
            {
-            sellers.length === 0 ? 
+            ordersData.length === 0 ? 
                 <div className='grid place-items-center h-screen flex-1'><h1 className='text-5xl font-semibold font-serif text-red-300'>No Data Found</h1></div> 
                 : 
                 <div className="overflow-x-autocborder flex-1 p-3 w-full">
@@ -53,7 +54,7 @@ const AllSellers = () => {
                     </thead>
                     <tbody>
                         {
-                            sellers?.map((user,i)=>{
+                            ordersData?.map((user,i)=>{
                                 return <tr className="hover">
                                     <th>{i+1}</th>
                                     <td><div className="avatar">
@@ -73,7 +74,9 @@ const AllSellers = () => {
             </div>
            }
         </>
+        
+        
     );
 };
 
-export default AllSellers;
+export default MyOrders;

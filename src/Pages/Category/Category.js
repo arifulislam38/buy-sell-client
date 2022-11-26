@@ -11,7 +11,7 @@ import DisplayModal from './DisplayModal';
 const Category = () => {
     const data = useLoaderData();
     const products = data.data;
-    const {user} = useContext(AuthContext);
+    const {user, setLoading} = useContext(AuthContext);
     const [product, setProduct] = useState({});
     const [modal, setModal] = useState(false);
     // const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,7 +30,8 @@ const Category = () => {
         .then(res=> res.json())
         .then(data => {
             if(data.success){
-                toast.success('Successfully added to the wishlist')
+                toast.success('Successfully added to the wishlist');
+                setLoading(false)
             }
         })
     };

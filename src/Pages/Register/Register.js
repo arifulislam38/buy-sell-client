@@ -55,6 +55,7 @@ const Register = () => {
                 updateUser(userInfo)
                     .then(() => {
                         saveUser(data.name, data.email,imagedata.data.url,data.type);
+                        setLoading(false)
                     })
                     .catch(err => console.log(err));
             })

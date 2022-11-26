@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Main from "../Layouts/Main/Main";
+import AllBuyers from "../Pages/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/AllSellers/AllSellers";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import Category from "../Pages/Category/Category";
 import ErrorPage from "../Pages/ErrorElement/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
+import MyOrders from "../Pages/MyOrders/MyOrders";
 import Register from "../Pages/Register/Register";
 
 const router = createBrowserRouter([
@@ -37,18 +39,16 @@ const router = createBrowserRouter([
                 element: <Dashboard></Dashboard>,
                 children: [
                     {
-                        path: '/dashboard',
-                        element: <AllUsers></AllUsers>,
-                        loader: ()=> fetch(`${process.env.REACT_APP_API}/allusers`)
-                    },
-                    {
-                        path: '/dashboard/allbuyers',
+                        path: '/dashboard/allusers',
                         element: <AllUsers></AllUsers>
                     },
                     {
+                        path: '/dashboard/allbuyers',
+                        element: <AllBuyers></AllBuyers>
+                    },
+                    {
                         path: '/dashboard/allsellers',
-                        element: <AllSellers></AllSellers>,
-                        loader: ()=> fetch(`${process.env.REACT_APP_API}/allsellers`)
+                        element: <AllSellers></AllSellers>
                     },
                     {
                         path: '/dashboard/addproducts',
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/myorders',
-                        element: <AllUsers></AllUsers>
+                        element: <MyOrders></MyOrders>
                     },
                     {
                         path: '/dashboard/myproducts',

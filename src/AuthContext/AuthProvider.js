@@ -43,8 +43,8 @@ const AuthProvider = ({children}) => {
             .then(res => res.json())
             .then(data => {
                 if(data.success){
-                    setAccType(data.data.type)
-                    if(data.data.role ==='admin'){
+                    setAccType(data?.data?.type)
+                    if(data?.data?.role ==='admin'){
                         setIsAdmin(true)
                     }
                     
@@ -69,6 +69,7 @@ const AuthProvider = ({children}) => {
         loading,
         setLoading,
         isAdmin,
+        setIsAdmin,
         accType
     }
     return (

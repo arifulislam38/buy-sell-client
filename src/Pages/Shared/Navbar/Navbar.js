@@ -1,5 +1,5 @@
 import React, { useContext,  useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaUser } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
@@ -9,9 +9,11 @@ const Navbar = () => {
 
     
 
-    const {user , logOut } = useContext(AuthContext);
+    const {user , logOut, setLoading, setIsAdmin } = useContext(AuthContext);
 
     const [open, setOpen] = useState(false);
+
+    const navigate = useNavigate();
 
 
 
@@ -19,7 +21,11 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => { 
+              setLoading(false);
+              setIsAdmin(false)
+              navigate('/')
+             })
             .catch(error => console.error(error))
     };
     return (
