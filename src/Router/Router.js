@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Main from "../Layouts/Main/Main";
+import AllSellers from "../Pages/AllSellers/AllSellers";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import Category from "../Pages/Category/Category";
 import ErrorPage from "../Pages/ErrorElement/ErrorPage";
@@ -36,8 +37,9 @@ const router = createBrowserRouter([
                 element: <Dashboard></Dashboard>,
                 children: [
                     {
-                        path: '/dashboard/allusers',
-                        element: <AllUsers></AllUsers>
+                        path: '/dashboard',
+                        element: <AllUsers></AllUsers>,
+                        loader: ()=> fetch(`${process.env.REACT_APP_API}/allusers`)
                     },
                     {
                         path: '/dashboard/allbuyers',
@@ -45,7 +47,8 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/allsellers',
-                        element: <AllUsers></AllUsers>
+                        element: <AllSellers></AllSellers>,
+                        loader: ()=> fetch(`${process.env.REACT_APP_API}/allsellers`)
                     },
                     {
                         path: '/dashboard/addproducts',

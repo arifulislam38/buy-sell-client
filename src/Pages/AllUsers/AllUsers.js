@@ -1,6 +1,10 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 const AllUsers = () => {
+    const data = useLoaderData();
+    const users = data.data;
+    console.log(data.data);
     return (
         
             <div className="overflow-x-autocborder flex-1 p-3">
@@ -8,34 +12,31 @@ const AllUsers = () => {
                     
                     <thead>
                     <tr>
-                        <th></th>
+                        <th>SL</th>
+                        <th>Image</th>
                         <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>Type</th>
+                        <th>admin</th>
                     </tr>
                     </thead>
                     <tbody>
-                    
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                    </tr>
-                    
-                    <tr className="hover">
-                        <th>2</th>
-                        <td>Hart Hagerty</td>
-                        <td>Desktop Support Technician</td>
-                        <td>Purple</td>
-                    </tr>
-                    
-                    <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
-                    </tr>
+                        {
+                            users?.map((user,i)=>{
+                                return <tr className="hover">
+                                    <th>{i+1}</th>
+                                    <td><div className="avatar">
+                                        <div className="w-12 rounded-full">
+                                            <img title={user.user} src={user.image} alt=""/>
+                                        </div>
+                                        </div>
+                                    </td>
+                                    <td className='text-xl font-semibold'>{user.name}</td>
+                                    <td><button className='btn btn-sm bg-blue-500'>Make Admin</button></td>
+                                    <td><button className='btn btn-sm bg-red-400'>Delete</button></td>
+                                </tr>
+                            })
+                        }
+
                     </tbody>
                 </table>
             </div>

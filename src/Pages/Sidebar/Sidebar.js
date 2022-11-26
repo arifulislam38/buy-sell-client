@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
 
 const Sidebar = () => {
@@ -8,16 +8,17 @@ const Sidebar = () => {
 
     return (
         <div className='shadow-lg rounded-sm lg:w-[30%] p-3 flex flex-col gap-3'>
+            {/* className={({isActive}) => isActive ? 'text-blue-500' : 'text-yellow-100'} */}
             {
                 isAdmin && accType === ''&&
                 <>
-                    <Link to='/dashboard/allusers'><button className='border rounded p-4 w-full bg-blue-300 hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >All Users</button></Link>
+                    <NavLink className={({isActive}) => isActive ? 'bg-blue-800 rounded-sm' : 'bg-blue-300'} to='/dashboard'><button className='border p-4 w-full hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >All Users</button></NavLink>
 
-                    <Link to='/dashboard/allsellers'><button className='border rounded p-4 w-full bg-blue-300 hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >All Sellers</button></Link>
+                    <NavLink className={({isActive}) => isActive ? 'bg-blue-800 rounded-sm' : 'bg-blue-300'} to='/dashboard/allsellers'><button className='border p-4 w-full hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >All Sellers</button></NavLink>
 
-                    <Link to='/dashboard/allbuyers'><button className='border rounded p-4 w-full bg-blue-300 hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >All Buyers</button></Link>
+                    <NavLink className={({isActive}) => isActive ? 'bg-blue-800 rounded-sm' : 'bg-blue-300'} to='/dashboard/allbuyers'><button className='border p-4 w-full hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >All Buyers</button></NavLink>
 
-                    <Link to='/dashboard/reportproduct'><button className='border rounded p-4 w-full bg-blue-300 hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >Reported Products</button></Link>
+                    <NavLink className={({isActive}) => isActive ? 'bg-blue-800 rounded-sm' : 'bg-blue-300'} to='/dashboard/reportproduct'><button className='border p-4 w-full hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >Reported Products</button></NavLink>
                 </>
             }
             {
