@@ -66,7 +66,7 @@ const Category = () => {
                             <p>Location: {product.location}</p>
                             <p>Total Usages: {product.duration}</p>
                             <p>Posted Date: {product.time}</p>
-                            <p><span className='bg-gray-300 px-2 text-xl rounded'>Seller: {product.seller.email}</span></p>
+                            <p><span className='bg-gray-300 px-2 text-xl rounded'>Seller: {product.seller}</span></p>
                             <div className='flex gap-7'>
                                 <button onClick={()=>handleWishList(product._id)} className='btn btn-sm bg-red-400 border-0'>Add to Wishlist</button>
                                 <button onClick={()=>handleReport(product._id)} className='btn btn-sm bg-slate-400 border-0 text-black'>Report</button>

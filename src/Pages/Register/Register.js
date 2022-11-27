@@ -76,7 +76,6 @@ const Register = () => {
             image,
             role: ''
         };
-        console.log(user)
         fetch(`${process.env.REACT_APP_API}/createuser`, {
                     method: 'PUT',
                     headers: {

@@ -46,9 +46,9 @@ const MyProducts = () => {
          <div className='flex-1 w-full p-3 grid lg:grid-cols-2 gap-5'>
          {
             products?.map(product=>
-            <div className='bg-violet-200 bg-opacity-30 relative p-3'>
+            <div className='bg-violet-200 bg-opacity-30 relative p-3 h-auto'>
                 <img className='w-[50%] mx-auto mb-1' src={product.image} alt="" />
-                <h1 className='text-2xl mb-2'>{product.name}</h1>
+                <h1 className='text-xl font-semibold'>{product.name}</h1>
                 <div className='lg:absolute bottom-5 w-full'>
                     <button onClick={()=>handleAdvertise(product._id)} className='bg-blue-300 w-[60%] py-1 rounded'>Advertise</button>
                 </div>

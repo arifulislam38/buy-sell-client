@@ -32,7 +32,7 @@ const Sidebar = () => {
                 <>
                     <Link to='/dashboard/myproducts'><button className='border rounded p-2 w-full bg-blue-300 hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >My Products</button></Link>
 
-                    <Link to='/dashboard/addproduct'><button className='border rounded p-2 w-full bg-blue-300 hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >Add Products</button></Link>
+                    <Link to='/dashboard/addproducts'><button className='border rounded p-2 w-full bg-blue-300 hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >Add Products</button></Link>
 
                     <Link to='/dashboard/mybuyers'><button className='border rounded p-2 w-full bg-blue-300 hover:bg-blue-500 hover:text-white text-black font-serif text-xl' >My Buyers</button></Link>
                 </>
