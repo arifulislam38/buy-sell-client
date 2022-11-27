@@ -68,7 +68,7 @@ const Register = () => {
         
     };
 
-    const saveUser = (name, email,image,aType = 'buyer') =>{
+    const saveUser = (name, email,image,aType = 'Buyer') =>{
         const user ={
             name, 
             email,
