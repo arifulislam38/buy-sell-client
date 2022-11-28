@@ -66,7 +66,7 @@ const MyProducts = () => {
          <div className='flex-1 w-full p-3 grid lg:grid-cols-2 gap-5'>
          {
             products?.map(product=>
-            <div className='bg-violet-200 bg-opacity-30 relative p-3 h-auto'>
+            <div className='bg-violet-200 bg-opacity-30 relative p-3 max-h-80'>
                 <img className='w-[50%] mx-auto mb-1' src={product.image} alt="" />
                 <h1 className='text-xl font-semibold'>{product.name}</h1>
                 <div className='lg:absolute bottom-5 w-full flex justify-center gap-3'>

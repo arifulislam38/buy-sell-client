@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 // import loginImage from '../../assets/login-new.png';
@@ -11,8 +11,13 @@ import * as animationData from './login.json';
 const Login = () => {
 
     UseTitle('Login');
+    const {signIn, googleLogin, setLoading} = useContext(AuthContext);
+    
 
-    const {signIn, googleLogin, setLoading, isAdmin} = useContext(AuthContext);
+    
+    
+
+    
 
     const location = useLocation();
     const navigate = useNavigate();

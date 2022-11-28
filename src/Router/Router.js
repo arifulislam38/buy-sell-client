@@ -15,6 +15,7 @@ import MyBuyers from "../Pages/MyBuyers/MyBuyers";
 import MyOrders from "../Pages/MyOrders/MyOrders";
 import MyProducts from "../Pages/MyProducts/MyProducts";
 import Register from "../Pages/Register/Register";
+import ReportedProducts from "../Pages/ReportedProduct/ReportedProducts";
 
 const router = createBrowserRouter([
     {
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/reportproduct',
-                        element: <AdminAccess><AllUsers></AllUsers></AdminAccess>
+                        element: <AdminAccess><ReportedProducts></ReportedProducts></AdminAccess>
                     },
                     {
                         path: '/dashboard/mybuyers',

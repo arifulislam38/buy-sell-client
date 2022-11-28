@@ -10,7 +10,7 @@ const Googleprovider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [accType, setAccType] = useState('');
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(true);
     const [loading, setLoading] = useState(true);
     const createUser = (email, password) =>{
         setLoading(true);
@@ -36,8 +36,8 @@ const AuthProvider = ({children}) => {
         return signOut(auth);
     }
 
-    useEffect( () =>{
-        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+    useEffect(() =>{
+        const unsubscribe =onAuthStateChanged(auth, currentUser =>{
             
             fetch(`${process.env.REACT_APP_API}/admin?email=${currentUser?.email}`)
             .then(res => res.json())
@@ -46,6 +46,8 @@ const AuthProvider = ({children}) => {
                     setAccType(data?.data?.type)
                     if(data?.data?.role ==='admin'){
                         setIsAdmin(true)
+                    }else{
+                        setIsAdmin(false)
                     }
                     
                 }
@@ -53,7 +55,7 @@ const AuthProvider = ({children}) => {
             setUser(currentUser);
             setLoading(false);
             console.log('user observing',currentUser);
-            console.log('admin',isAdmin,accType)
+            console.log('admin current',isAdmin,accType)
         });
 
         return () => unsubscribe();

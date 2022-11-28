@@ -19,7 +19,9 @@ const AdminAccess = ({children}) => {
               navigate('/login')
              })
             .catch(error => console.error(error))
+        
     }
+    return children;
 };
 
 export default AdminAccess;
