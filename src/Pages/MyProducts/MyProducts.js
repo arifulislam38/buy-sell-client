@@ -34,6 +34,19 @@ const MyProducts = () => {
         })
     };
 
+    const handleDelete = (id) =>{
+        fetch(`${process.env.REACT_APP_API}/advertise?id=${id}`,{
+            method: "POST"
+        })
+        .then(res=> res.json())
+        .then(data=>{
+            if(data.success){
+                setLoading(false)
+                toast.success('Deleted successfully')
+            }
+        })
+    };
+
 
     return (
         <>
@@ -49,8 +62,17 @@ const MyProducts = () => {
             <div className='bg-violet-200 bg-opacity-30 relative p-3 h-auto'>
                 <img className='w-[50%] mx-auto mb-1' src={product.image} alt="" />
                 <h1 className='text-xl font-semibold'>{product.name}</h1>
-                <div className='lg:absolute bottom-5 w-full'>
-                    <button onClick={()=>handleAdvertise(product._id)} className='bg-blue-300 w-[60%] py-1 rounded'>Advertise</button>
+                <div className='lg:absolute bottom-5 w-full flex justify-center gap-3'>
+                    {
+                        product.status === 'sold'?
+                        <h1 className='text-blue-600 text-xl font-serif'>Sold</h1>
+                        :
+                        <button className='bg-blue-300 p-1 rounded'>Unsold</button>
+                    }
+
+                    <button onClick={()=>handleAdvertise(product._id)} className='bg-blue-300 p-1 rounded'>Advertise</button>
+
+                    <button onClick={()=>handleDelete(product._id)} className='bg-red-300 p-1 rounded'>Delete</button>
                 </div>
             </div>)
          }

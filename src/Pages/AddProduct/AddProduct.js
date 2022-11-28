@@ -29,7 +29,7 @@ const AddProduct = () => {
             if(imagedata.success){
                 setAddError('');
                 const product = {
-                    name, description, image: imagedata.data.url, category,location, originalPrice, resellPrice, duration, seller: user?.email , time, buyer: '', wish: '', report: ''
+                    name, description, image: imagedata.data.url, category,location, originalPrice, resellPrice, duration, seller: user?.email , time, buyer: '', wish: '', report: '', status: 'unsold'
                 };
 
                 fetch(`${process.env.REACT_APP_API}/addproduct`,{

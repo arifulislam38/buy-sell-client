@@ -13,15 +13,43 @@ const Category = () => {
     const products = data.data;
     const {user, setLoading} = useContext(AuthContext);
     const [product, setProduct] = useState({});
+    const [formdata, setFormdata] = useState({});
     const [modal, setModal] = useState(false);
     // const { register, handleSubmit, formState: { errors } } = useForm();
 
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        toast.success('Your item is Booked');
+        const form = event.target;
+        const data ={
+            phone: form.phone.value,
+            mlocation: form.location.value
+        };
+        setFormdata(data)
         setModal(false)
     };
+
+    const handleOrder = (id) =>{
+        const product = {...formdata};
+        // product.buyer = user?.email;
+        fetch(`${process.env.REACT_APP_API}/order?id=${id}&email=${user?.email}`,{
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+        .then(res=> res.json())
+        .then(data=>{
+            if(data.success){
+                toast.success('Successfully Booked')
+                setLoading(false)
+            }
+            else{
+                toast.error(data.message)
+            }
+        })
+    }
 
     const handleWishList = (id) =>{
         fetch(`${process.env.REACT_APP_API}/wishlist?id=${id}&email=${user.email}`,{
@@ -52,6 +80,13 @@ const Category = () => {
     
 // console.log(laptop)
     return (
+        <>
+        {
+            products.length === 0 &&
+                <div className='w-full h-screen flex justify-center items-center'>
+                    <h1 className='text-blue-300 text-5xl font-semibold font-serif'>All Products are solded</h1>
+                </div>
+        }
         <div className='px-10 flex flex-col gap-5'>
             {
                 products?.map(product=>{
@@ -81,10 +116,11 @@ const Category = () => {
             }
 
             { modal &&
-                <DisplayModal product={product} setModal={setModal} user={user} handleSubmit={handleSubmit}></DisplayModal>
+                <DisplayModal product={product} setModal={setModal} user={user} handleSubmit={handleSubmit} handleOrder={handleOrder}></DisplayModal>
             }
                                 
         </div>
+        </>
     );
 };
 

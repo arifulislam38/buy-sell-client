@@ -12,7 +12,8 @@
       "buyer": "",
       "time": "10/12/21",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "unsold"
     },
     {
       "name": "Asus X441MA Celeron Dual Core 14",
@@ -27,7 +28,8 @@
       "buyer": "",
       "time": "10/10/21",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "unsold"
     },
     {
       "name": "Asus X570ZD Ryzen 5 Gaming Laptop",
@@ -42,7 +44,8 @@
       "buyer": "",
       "time": "04/06/20",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "unsold"
     },
 
 
@@ -62,7 +65,8 @@
       "buyer": "",
       "time": "10/11/22",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "unsold"
     },
     {
       "name": "HP EliteBook X360 1030 G2 Core i7 7th Gen",
@@ -77,7 +81,8 @@
       "buyer": "",
       "time": "03/04/21",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "unsold"
     },
     {
       "name": "HP Pavilion 15-eh1070wm Ryzen 7 Slim",
@@ -92,7 +97,8 @@
       "buyer": "",
       "time": "26/06/22",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "sold"
     },
 
 
@@ -112,7 +118,8 @@
       "buyer": "",
       "time": "04/05/21",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "unsold"
     },
     {
       "name": "Dell Latitude 7480 Core i7 7th Gen",
@@ -127,7 +134,8 @@
       "buyer": "",
       "time": "10/10/20",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "unsold"
     },
     {
       "name": "Dell XPS 13 9365 2-in-1 Core i5 8th Gen",
@@ -142,7 +150,8 @@
       "buyer": "",
       "time": "08/08/21",
       "wish": "",
-      "report": ""
+      "report": "",
+      "status" : "unsold"
     }
     
 ]

@@ -9,6 +9,7 @@ import Category from "../Pages/Category/Category";
 import ErrorPage from "../Pages/ErrorElement/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
+import MyBuyers from "../Pages/MyBuyers/MyBuyers";
 import MyOrders from "../Pages/MyOrders/MyOrders";
 import MyProducts from "../Pages/MyProducts/MyProducts";
 import Register from "../Pages/Register/Register";
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/mybuyers',
-                        element: <AllUsers></AllUsers>
+                        element: <MyBuyers></MyBuyers>
                     },
                     {
                         path: '/dashboard/myorders',

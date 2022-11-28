@@ -54,7 +54,7 @@ const Register = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email,imagedata.data.url,data.type);
+                        saveUser(data.name, data.email,imagedata.data.url,data.type,data.phone);
                         setLoading(false)
                     })
                     .catch(err => console.log(err));
@@ -68,13 +68,14 @@ const Register = () => {
         
     };
 
-    const saveUser = (name, email,image,aType = 'Buyer') =>{
+    const saveUser = (name, email,image,aType = 'Buyer',phone = "Not Found") =>{
         const user ={
             name, 
             email,
             type: aType,
             image,
-            role: ''
+            role: '',
+            phone
         };
         fetch(`${process.env.REACT_APP_API}/createuser`, {
                     method: 'PUT',
@@ -138,6 +139,14 @@ const Register = () => {
                             required: true
                         })} className="input input-bordered w-full" />
                         {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                    </div>
+
+                    <div className="form-control w-full">
+                        <label className="label"> <span className="label-text">Phone</span></label>
+                        <input type="email" {...register("phone", {
+                            required: "phone number is required"
+                        })} className="input input-bordered w-full" />
+                        {errors.phone && <p className='text-red-500'>{errors.phone.message}</p>}
                     </div>
 
 

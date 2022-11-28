@@ -28,8 +28,9 @@ const MyOrders = () => {
         .then(res=>res.json())
         .then(data=> {
             if(data.success){
-                toast.success('Successfully Delted the order');
                 setLoading(false)
+                toast.success('Successfully Deleted the order');
+                
             }
         })
         }
@@ -39,38 +40,28 @@ const MyOrders = () => {
             <>
            {
             ordersData.length === 0 ? 
-                <div className='grid place-items-center h-screen flex-1'><h1 className='text-5xl font-semibold font-serif text-red-300'>No Data Found</h1></div> 
+                <div className='grid place-items-center h-screen flex-1 w-full'><h1 className='text-5xl font-semibold font-serif text-red-300'>No Data Found</h1></div> 
                 : 
                 <div className="overflow-x-autocborder flex-1 p-3 w-full">
-                <table className="table w-full">
-                    
-                    <thead>
-                    <tr>
-                        <th>SL</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            ordersData?.map((user,i)=>{
-                                return <tr className="hover">
-                                    <th>{i+1}</th>
-                                    <td><div className="avatar">
-                                        <div className="w-12 rounded-full">
-                                            <img title={user.user} src={user.image} alt=""/>
-                                        </div>
-                                        </div>
-                                    </td>
-                                    <td>{user.name}</td>
-                                    <td><button onClick={()=>handleDelete(user._id)} className='btn btn-sm bg-red-400'>Delete</button></td>
-                                </tr>
-                            })
-                        }
-
-                    </tbody>
-                </table>
+                {
+                    ordersData?.map(orders=> <div className="card w-96 bg-base-100 shadow-xl">
+                        <figure><img src={orders.image} alt="Shoes" /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">
+                            {orders.name}
+                            </h2>
+                            <p>
+                                <span className='bg-slate-400 rounded px-1 mr-2'>Regular Price: {orders.originalPrice}</span>
+                                <span className='bg-slate-400 rounded px-1'>Selling Price: {orders.resellPrice}</span>
+                            </p>
+                            <div className="card-actions justify-end">
+                                <div onClick={()=>handleDelete(orders._id)} className="badge badge-outline bg-red-300 p-3 cursor-pointer">Delete</div> 
+                                <div className="badge badge-outline bg-blue-400 cursor-pointer p-3">Pay</div>
+                            </div>
+                        </div>
+                        </div>
+                    )
+                }
             </div>
            }
         </>
