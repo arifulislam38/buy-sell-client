@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
 import UseTitle from '../../Hooks/Title/Title';
 
 const AddProduct = () => {
-    const {user} = useContext(AuthContext);
+    const {user,accType} = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [addError, setAddError] = useState('');
     const navigate = useNavigate();
 
     UseTitle('Add Product');
+
+    if(accType !== 'Seller'){
+        navigate('/')
+    };
 
 
     const handleAdd = data =>{

@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import Main from "../Layouts/Main/Main";
+import AdminAccess from "../Pages/Access/AdminAccess";
+import PrivateAccess from "../Pages/Access/PrivateAccess";
 import AddProduct from "../Pages/AddProduct/AddProduct";
 import AllBuyers from "../Pages/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/AllSellers/AllSellers";
@@ -39,19 +41,19 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>,
+                element: <PrivateAccess><Dashboard></Dashboard></PrivateAccess>,
                 children: [
                     {
                         path: '/dashboard/allusers',
-                        element: <AllUsers></AllUsers>
+                        element: <AdminAccess><AllUsers></AllUsers></AdminAccess>
                     },
                     {
                         path: '/dashboard/allbuyers',
-                        element: <AllBuyers></AllBuyers>
+                        element: <AdminAccess><AllBuyers></AllBuyers></AdminAccess>
                     },
                     {
                         path: '/dashboard/allsellers',
-                        element: <AllSellers></AllSellers>
+                        element: <AdminAccess><AllSellers></AllSellers></AdminAccess>
                     },
                     {
                         path: '/dashboard/addproducts',
@@ -59,7 +61,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/dashboard/reportproduct',
-                        element: <AllUsers></AllUsers>
+                        element: <AdminAccess><AllUsers></AllUsers></AdminAccess>
                     },
                     {
                         path: '/dashboard/mybuyers',

@@ -1,11 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
 
 const MyOrders = () => {
-    const {user} = useContext(AuthContext);
+    const {user,accType} = useContext(AuthContext);
     const [ordersData, setOrdersData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    if(accType !== 'Buyer'){
+        navigate('/')
+    };
 
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_API}/myorders?email=${user?.email}`)
@@ -42,9 +48,9 @@ const MyOrders = () => {
             ordersData.length === 0 ? 
                 <div className='grid place-items-center h-screen flex-1 w-full'><h1 className='text-5xl font-semibold font-serif text-red-300'>No Data Found</h1></div> 
                 : 
-                <div className="overflow-x-autocborder flex-1 p-3 w-full">
+                <div className="overflow-x-autocborder flex-1 p-3 w-full grid lg:grid-cols-2 gap-5">
                 {
-                    ordersData?.map(orders=> <div className="card w-96 bg-base-100 shadow-xl">
+                    ordersData?.map(orders=> <div className="card bg-base-100 shadow-xl">
                         <figure><img src={orders.image} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">

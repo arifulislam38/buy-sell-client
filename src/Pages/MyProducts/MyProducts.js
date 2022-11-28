@@ -3,14 +3,21 @@ import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
 
 
 const MyProducts = () => {
-    const {user} = useContext(AuthContext);
+    const {user,accType} = useContext(AuthContext);
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+
+    if(accType !== 'Seller'){
+        navigate('/')
+    };
 
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_API}/myproducts?id=${user?.email}`)
