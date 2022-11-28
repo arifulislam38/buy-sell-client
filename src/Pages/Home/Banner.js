@@ -8,7 +8,7 @@ const Banner = () => {
             <img className='w-full h-full rounded' src={banner} alt="" />
             <div className='absolute top-0 w-full h-full bg-gray-600 bg-opacity-20'></div>
             <div className='w-full h-full absolute top-0 grid place-items-center'>
-                <h1 className='text-7xl font-semibold font-serif w-[70%] leading-[80px]'><span className='text-white'>Swap your laptop with updated one.</span> <br /> <span className='text-black'>No need to <br /> hesitate</span></h1>
+                <h1 className='lg:text-7xl sm:text-5xl font-semibold font-serif w-[70%] leading-[80px]'><span className='text-white'>Swap your laptop with updated one.</span> <br /> <span className='text-black'>No need to <br /> hesitate</span></h1>
                 <FaArrowDown className='text-4xl bg-blue-400 rounded-full text-black'></FaArrowDown>
             </div>
             

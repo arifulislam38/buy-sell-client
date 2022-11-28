@@ -14,7 +14,11 @@ const MyOrders = () => {
     };
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API}/myorders?email=${user?.email}`)
+        fetch(`${process.env.REACT_APP_API}/myorders?email=${user?.email}`,{
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res => res.json())
         .then(data=>{
             if(data.success){
@@ -29,7 +33,10 @@ const MyOrders = () => {
         const confirm = window.confirm();
         if(confirm){
             fetch(`${process.env.REACT_APP_API}/myorders?id=${id}`,{
-            method: 'POST'
+            method: 'POST',
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
         .then(res=>res.json())
         .then(data=> {

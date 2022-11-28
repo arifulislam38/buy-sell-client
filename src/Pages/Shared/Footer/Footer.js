@@ -4,25 +4,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-<footer className=' mt-5 bg-[#021B29]'>
-    <div className= "p-9"> 
-        <div className="w-[90%] mx-auto">
-            <div className="lg:flex justify-between items-center">
-                <div className="">
-                    <div className="text-start">
-                        <p className="mb-2 text-xl text-gray-200">Click to Join </p>
-                        <h2 className='text-5xl text-gray-300 font-serif'>In photography session</h2>
-                    </div>
-                </div>
-                <div className="">
-                    <div className="">
-                        <button className='p-4 text-xl bg-orange-300 rounded'><Link to='/login'>Join Now</Link></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr className='mt-16'/>
-    </div>
+<footer className=' mt-5 bg-blue-500'>
+    
     
         <div className=" text-gray-300 text-start">
             <div className="w-[80%] mx-auto py-8">
@@ -31,7 +14,7 @@ const Footer = () => {
 
                     <div className="text-xl font-serif">
                         <div className="flex flex-col gap-5">
-                           <h1 className='text-5xl text-orange-300'>Marriage photo</h1>
+                           <h1 className='text-5xl text-orange-300'>Swap Laptop</h1>
                             <div className="">
                                 <h6 className='text-orange-300'>Office Address</h6>
                                 <p>London Oxford Street, 012 United Kingdom.</p>
@@ -42,7 +25,7 @@ const Footer = () => {
                             </div>
                             <div className="">
                                 <h6 className='text-orange-300'>Business Email</h6>
-                                <p>Business@photo.com</p>
+                                <p>Business@swap.com</p>
                             </div>
 
                            

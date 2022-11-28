@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { FaLess } from 'react-icons/fa';
+import { BiBadgeCheck } from 'react-icons/bi';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
 import DisplayModal from './DisplayModal';
@@ -35,7 +35,8 @@ const Category = () => {
         fetch(`${process.env.REACT_APP_API}/order?id=${id}&email=${user?.email}`,{
             method: 'POST',
             headers:{
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(product)
         })
@@ -53,7 +54,10 @@ const Category = () => {
 
     const handleWishList = (id) =>{
         fetch(`${process.env.REACT_APP_API}/wishlist?id=${id}&email=${user.email}`,{
-            method: 'POST'
+            method: 'POST',
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
         .then(res=> res.json())
         .then(data => {
@@ -67,7 +71,10 @@ const Category = () => {
 
     const handleReport = (id) =>{
         fetch(`${process.env.REACT_APP_API}/report?id=${id}&email=${user.email}`,{
-            method: 'POST'
+            method: 'POST',
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
         .then(res=> res.json())
         .then(data => {
@@ -101,7 +108,7 @@ const Category = () => {
                             <p>Location: {product.location}</p>
                             <p>Total Usages: {product.duration}</p>
                             <p>Posted Date: {product.time}</p>
-                            <p><span className='bg-gray-300 px-2 text-xl rounded'>Seller: {product.seller}</span></p>
+                            <p className='flex items-center'><span className='bg-gray-300 px-2 text-xl rounded'>Seller: {product.seller.email}</span>  {product.seller.verified && <BiBadgeCheck className='inline ml-2 text-3xl bg-blue-700 rounded-full'></BiBadgeCheck>}</p>
                             <div className='flex gap-7'>
                                 <button onClick={()=>handleWishList(product._id)} className='btn btn-sm bg-red-400 border-0'>Add to Wishlist</button>
                                 <button onClick={()=>handleReport(product._id)} className='btn btn-sm bg-slate-400 border-0 text-black'>Report</button>

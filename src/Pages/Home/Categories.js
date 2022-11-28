@@ -6,6 +6,10 @@ import { Link } from 'react-router-dom';
 
 const Categories = () => {
     return (
+        <section className='mb-10'>
+            <div className='w-full text-start px-20 mb-20'>
+                <div className="divider"><h1 className='text-4xl font-semibold font-serif text-blue-700'>Categories</h1></div>
+            </div>
         <div className='grid lg:grid-cols-3 gap-7 place-items-center px-10'>
 
             
@@ -48,6 +52,7 @@ const Categories = () => {
 
 
         </div>
+        </section>
     );
 };
 

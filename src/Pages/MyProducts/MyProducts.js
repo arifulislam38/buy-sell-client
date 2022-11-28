@@ -20,7 +20,11 @@ const MyProducts = () => {
     };
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API}/myproducts?id=${user?.email}`)
+        fetch(`${process.env.REACT_APP_API}/myproducts?id=${user?.email}`,{
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res=> res.json())
         .then(data => {
             setProducts(data.data)
@@ -30,7 +34,10 @@ const MyProducts = () => {
 
     const handleAdvertise = (id) =>{
         fetch(`${process.env.REACT_APP_API}/advertise?id=${id}`,{
-            method: "PATCH"
+            method: "PATCH",
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
         .then(res=> res.json())
         .then(data=>{
@@ -43,7 +50,10 @@ const MyProducts = () => {
 
     const handleDelete = (id) =>{
         fetch(`${process.env.REACT_APP_API}/advertise?id=${id}`,{
-            method: "POST"
+            method: "POST",
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
         .then(res=> res.json())
         .then(data=>{
@@ -57,16 +67,18 @@ const MyProducts = () => {
 
     return (
         <>
-         {
-            products.length === 0 &&
-            <div className='h-screen w-full grid place-items-center'>
+         
+        {
+            products.length === 0 ?
+            <div className='h-screen w-full grid place-items-center flex-1'>
                 <h1 className='text-5xl text-red-200 font-semibold font-serif'>No Products found for you</h1>
             </div> 
-         }
+        
+         :
          <div className='flex-1 w-full p-3 grid lg:grid-cols-2 gap-5'>
          {
             products?.map(product=>
-            <div className='bg-violet-200 bg-opacity-30 relative p-3 max-h-80'>
+            <div className='bg-violet-200 bg-opacity-30 relative p-3 max-h-96'>
                 <img className='w-[50%] mx-auto mb-1' src={product.image} alt="" />
                 <h1 className='text-xl font-semibold'>{product.name}</h1>
                 <div className='lg:absolute bottom-5 w-full flex justify-center gap-3'>
@@ -84,6 +96,7 @@ const MyProducts = () => {
             </div>)
          }
         </div>
+        }
         </>
     );
 };

@@ -7,7 +7,11 @@ const AllUsers = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API}/allusers`)
+        fetch(`${process.env.REACT_APP_API}/allusers`,{
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res => res.json())
         .then(data=>{
             if(data.success){
@@ -20,7 +24,10 @@ const AllUsers = () => {
         const confirm = window.confirm();
         if(confirm){
             fetch(`${process.env.REACT_APP_API}/allsellers?id=${id}`,{
-            method: 'POST'
+            method: 'POST',
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
         .then(res=>res.json())
         .then(data=> {

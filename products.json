@@ -8,7 +8,10 @@
       "originalPrice": "60000",
       "resellPrice": "350000",
       "duration": "6 Month",
-      "seller": "arif5@gmail.com",
+      "seller": {
+        "email":"arif5@gmail.com",
+        "verified": true
+      },
       "buyer": "",
       "time": "10/12/21",
       "wish": "",
@@ -24,7 +27,10 @@
       "originalPrice": "50000",
       "resellPrice": "25000",
       "duration": "8 Month",
-      "seller": "mdarifulislam0238@gmail.com",
+      "seller": {
+        "email":"mdarifulislam0238@gmail.com",
+        "verified": true
+      },
       "buyer": "",
       "time": "10/10/21",
       "wish": "",
@@ -40,7 +46,10 @@
       "originalPrice": "70000",
       "resellPrice": "40000",
       "duration": "9 Month",
-      "seller": "forhad@gmail.com",
+      "seller": {
+        "email":"forhad@gmail.com",
+        "verified": true
+      },
       "buyer": "",
       "time": "04/06/20",
       "wish": "",
@@ -61,7 +70,10 @@
       "originalPrice": "60000",
       "resellPrice": "350000",
       "duration": "7 Month",
-      "seller": "forhad1@gmail.com",
+      "seller": {
+        "email":"forhad1@gmail.com",
+        "verified": false
+      },
       "buyer": "",
       "time": "10/11/22",
       "wish": "",
@@ -77,7 +89,10 @@
       "originalPrice": "50000",
       "resellPrice": "25000",
       "duration": "6 Month",
-      "seller": "arif5@gmail.com",
+      "seller": {
+        "email":"arif5@gmail.com",
+        "verified": true
+      },
       "buyer": "",
       "time": "03/04/21",
       "wish": "",
@@ -93,7 +108,10 @@
       "originalPrice": "60000",
       "resellPrice": "350000",
       "duration": "9 Month",
-      "seller": "forhad1@gmail.com",
+      "seller": {
+        "email":"forhad1@gmail.com",
+        "verified": false
+      },
       "buyer": "",
       "time": "26/06/22",
       "wish": "",
@@ -114,7 +132,10 @@
       "originalPrice": "65000",
       "resellPrice": "35000",
       "duration": "7 Month",
-      "seller": "forhad@gmail.com",
+      "seller": {
+        "email":"forhad@gmail.com",
+        "verified": true
+      },
       "buyer": "",
       "time": "04/05/21",
       "wish": "",
@@ -130,7 +151,10 @@
       "originalPrice": "90000",
       "resellPrice": "45000",
       "duration": "9 Month",
-      "seller": "arif5@gmail.com",
+      "seller": {
+        "email":"arif5@gmail.com",
+        "verified": true
+      },
       "buyer": "",
       "time": "10/10/20",
       "wish": "",
@@ -146,7 +170,10 @@
       "originalPrice": "60000",
       "resellPrice": "35000",
       "duration": "6 Month",
-      "seller": "forhad1@gmail.com",
+      "seller": {
+        "email":"forhad1@gmail.com",
+        "verified": false
+      },
       "buyer": "",
       "time": "08/08/21",
       "wish": "",

@@ -9,7 +9,11 @@ const ReportedProducts = () => {
     
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API}/report`)
+        fetch(`${process.env.REACT_APP_API}/report`,{
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res=> res.json())
         .then(data => {
             setProducts(data.data)
@@ -20,7 +24,10 @@ const ReportedProducts = () => {
         const confirm = window.confirm();
         if(confirm){
             fetch(`${process.env.REACT_APP_API}/deletereport?id=${id}`,{
-            method: "POST"
+            method: "POST",
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
         .then(res=> res.json())
         .then(data=>{
@@ -43,7 +50,7 @@ const ReportedProducts = () => {
          <div className='flex-1 w-full p-3 grid lg:grid-cols-2 gap-5'>
          {
             products?.map(product=>
-            <div className='bg-violet-200 bg-opacity-30 relative p-3 max-h-80'>
+            <div className='bg-violet-200 bg-opacity-30 relative p-3 max-h-96'>
                 <img className='w-[50%] mx-auto mb-1' src={product.image} alt="" />
                 <h1 className='text-xl font-semibold'>{product.name}</h1>
                 <div className='lg:absolute bottom-5 w-full flex justify-center gap-3'>

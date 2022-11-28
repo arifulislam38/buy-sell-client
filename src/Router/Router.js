@@ -7,6 +7,7 @@ import AddProduct from "../Pages/AddProduct/AddProduct";
 import AllBuyers from "../Pages/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/AllSellers/AllSellers";
 import AllUsers from "../Pages/AllUsers/AllUsers";
+import Blog from "../Pages/Blog/Blog";
 import Category from "../Pages/Category/Category";
 import ErrorPage from "../Pages/ErrorElement/ErrorPage";
 import Home from "../Pages/Home/Home";
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
                 path: '/category/:id',
                 element: <Category></Category>,
                 loader: ({params}) => fetch(`${process.env.REACT_APP_API}/category/${params.id}`)
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/dashboard',

@@ -6,7 +6,11 @@ const AllBuyers = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API}/allbuyers`)
+        fetch(`${process.env.REACT_APP_API}/allbuyers`,{
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         .then(res => res.json())
         .then(data=>{
             if(data.success){
@@ -18,7 +22,10 @@ const AllBuyers = () => {
 
     const handleDelete = (id) =>{
         fetch(`${process.env.REACT_APP_API}/allsellers?id=${id}`,{
-            method: 'POST'
+            method: 'POST',
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
         })
         .then(res=>res.json())
         .then(data=> {
@@ -45,8 +52,7 @@ const AllBuyers = () => {
                         <th>SL</th>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Type</th>
-                        <th>admin</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,7 +67,7 @@ const AllBuyers = () => {
                                         </div>
                                     </td>
                                     <td>{user.name}</td>
-                                    <td><button className='rounded-lg p-1 bg-blue-500'>Make Admin</button></td>
+                                    
                                     <td><button onClick={()=>handleDelete(user._id)} className='rounded-lg p-1 bg-red-400'>Delete</button></td>
                                 </tr>
                             })
