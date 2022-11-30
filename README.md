@@ -50,6 +50,6 @@ In the service details page you will see
 
   ### my client side link is ['https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-arifulislam38']
 
-  ### Live side link is ['https://wedding-photography-aaba3.web.app']
+  ### Live side link is ['https://assignment-12-af9cf.web.app/']
 
   ### admin email: forhad@gmail.com  pass: 123456

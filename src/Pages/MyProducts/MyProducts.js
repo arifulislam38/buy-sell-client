@@ -5,6 +5,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
+import Spinner from '../spinner/Spinner';
 
 
 const MyProducts = () => {
@@ -12,6 +13,7 @@ const MyProducts = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [spin, setSpin] = useState(false);
     const navigate = useNavigate();
 
 
@@ -20,6 +22,7 @@ const MyProducts = () => {
     };
 
     useEffect(()=>{
+        setSpin(true)
         fetch(`${process.env.REACT_APP_API}/myproducts?id=${user?.email}`,{
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -28,6 +31,7 @@ const MyProducts = () => {
         .then(res=> res.json())
         .then(data => {
             setProducts(data.data)
+            setSpin(false)
         })
     },[loading,user?.email]);
 
@@ -65,11 +69,16 @@ const MyProducts = () => {
     };
 
 
+    if(spin){
+        return <div className='flex-1 w-full h-screen grid place-items-center'><Spinner></Spinner></div>
+    }
+
+
     return (
         <>
          
         {
-            products.length === 0 ?
+            products?.length === 0 ?
             <div className='h-screen w-full grid place-items-center flex-1'>
                 <h1 className='text-5xl text-red-200 font-semibold font-serif'>No Products found for you</h1>
             </div> 

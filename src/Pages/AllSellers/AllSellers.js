@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
+import Spinner from '../spinner/Spinner';
 
 const AllSellers = () => {
     const [sellers, setSellers] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const [spin, setSpin] = useState(false)
 
     useEffect(()=>{
+        setSpin(true)
         fetch(`${process.env.REACT_APP_API}/allsellers`,{
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -16,6 +19,7 @@ const AllSellers = () => {
         .then(data=>{
             if(data.success){
                 setSellers(data.data)
+                setSpin(false)
             }
         })
     },[loading])
@@ -39,6 +43,10 @@ const AllSellers = () => {
         })
         }
     };
+
+    if(spin){
+        return <div className='flex-1 w-full h-screen grid place-items-center'><Spinner></Spinner></div>
+    }
 
 
     return (

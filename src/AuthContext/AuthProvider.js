@@ -9,8 +9,8 @@ const Googleprovider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [accType, setAccType] = useState('');
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [accType, setAccType] = useState('Buyer');
+    const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
     const createUser = (email, password) =>{
         setLoading(true);

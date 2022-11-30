@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// import loginImage from '../../assets/login-new.png';
 import Lottie from 'react-lottie';
 import { AuthContext } from '../../AuthContext/AuthProvider';
 import UseTitle from '../../Hooks/Title/Title';
@@ -96,20 +95,14 @@ const Login = () => {
       loop: true,
       autoplay: true, 
       animationData: animationData,
-    //   rendererSettings: {
-    //     preserveAspectRatio: 'xMidYMid slice'
-    //   }
     };
 
 
     return (
         <div >
-            <h1 className='text-7xl font-bold font-serif text-center text-yellow-100 mb-32 pt-24 overflow-hidden'>Welcome to the Login page</h1>
+            <h1 className='text-7xl font-bold font-serif text-center  mb-32 pt-24 overflow-hidden'>Welcome to the Login page</h1>
             <div className='grid lg:grid-cols-2 gap-8 p-8 items-center justify-center lg:w-[85%] mx-auto'>
                 <div className='sm:mb-5'>
-                    {/* <img src={loginImage} alt="" /> */}
-                    {/* <img src={loginn} alt="" /> */}
-                    {/* <loginn></loginn> */}
                     <Lottie options={defaultOptions}></Lottie>
                 </div>
                 <div className='sm:w-full sm:p-8'>
@@ -123,7 +116,7 @@ const Login = () => {
 
                         <button onClick={googlesignin} className='lg:w-[80%] w-full mx-auto text-xl text-black font-serif font-bold p-4 border rounded'>Log In with Google</button>
 
-                        <p className='text-xl font-serif text-gray-200 lg:w-[80%] w-full mx-auto'>New to this site? <Link to='/register' className='text-black underline'>Create an account</Link></p>
+                        <p className='text-xl font-serif lg:w-[80%] w-full mx-auto'>New to this site? <Link to='/register' className='text-black underline'>Create an account</Link></p>
                     </form>
                 </div>
             </div>

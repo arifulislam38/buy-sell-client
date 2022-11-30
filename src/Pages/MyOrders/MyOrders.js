@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
+import Spinner from '../spinner/Spinner';
 
 const MyOrders = () => {
     const {user,accType} = useContext(AuthContext);
     const [ordersData, setOrdersData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [spin, setSpin] = useState(false);
     const navigate = useNavigate();
 
     if(accType !== 'Buyer'){
@@ -14,6 +16,7 @@ const MyOrders = () => {
     };
 
     useEffect(()=>{
+        setSpin(true)
         fetch(`${process.env.REACT_APP_API}/myorders?email=${user?.email}`,{
             headers:{
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -23,6 +26,7 @@ const MyOrders = () => {
         .then(data=>{
             if(data.success){
                 setOrdersData(data.data)
+                setSpin(false)
             }
         })
     },[loading, user?.email]);
@@ -48,6 +52,12 @@ const MyOrders = () => {
         })
         }
     };
+
+    if(spin){
+        return <div className='flex-1 w-full h-screen grid place-items-center'><Spinner></Spinner></div>
+    }
+
+
     return (
         
             <>
@@ -69,7 +79,7 @@ const MyOrders = () => {
                             </p>
                             <div className="card-actions justify-end">
                                 <div onClick={()=>handleDelete(orders._id)} className="badge badge-outline bg-red-300 p-3 cursor-pointer">Delete</div> 
-                                <div className="badge badge-outline bg-blue-400 cursor-pointer p-3">Pay</div>
+                                <div className="badge badge-outline bg-blue-400 cursor-pointer p-3"><Link to={`/payment/${orders._id}`}>Pay</Link></div>
                             </div>
                         </div>
                         </div>

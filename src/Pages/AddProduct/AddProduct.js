@@ -9,6 +9,7 @@ const AddProduct = () => {
     const {user,accType} = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [addError, setAddError] = useState('');
+    const [info, setInfo] = useState('');
     const navigate = useNavigate();
 
     UseTitle('Add Product');
@@ -32,8 +33,9 @@ const AddProduct = () => {
         .then(imagedata=> {
             if(imagedata.success){
                 setAddError('');
+                const seller = {email: user?.email, verified: false}
                 const product = {
-                    name, description, image: imagedata.data.url, category,location, originalPrice, resellPrice, duration, seller: user?.email , time, buyer: '', wish: '', report: '', status: 'unsold'
+                    name, description, image: imagedata.data.url, category,location, originalPrice, resellPrice, duration, seller , time, buyer: '', wish: '', report: '', status: 'unsold'
                 };
 
                 fetch(`${process.env.REACT_APP_API}/addproduct`,{
@@ -90,7 +92,7 @@ const AddProduct = () => {
                         {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
                     </div>
 
-                    <div className="form-control w-full">
+                    <div onBlur={(event)=>setInfo(event.target.value)} className="form-control w-full">
                         <label className="label"> <span className="label-text">Location</span></label>
                         <input type="text" {...register("location", {
                             required: "location is Required"
@@ -138,7 +140,7 @@ const AddProduct = () => {
                         {errors.password && <p className='text-red-500'>{errors.image.message}</p>}
                     </div>
 
-                    <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
+                    <input className='btn btn-accent w-full mt-4' value="Add Product" type="submit" disabled={!info? true: false }/>
                     {addError && <p className='text-red-600'>{addError}</p>}
                 </form>
         </div>

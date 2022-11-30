@@ -12,6 +12,8 @@ const Register = () => {
     const {createUser,updateUser, googleLogin, setLoading} = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('');
+    const [info, setInfo] = useState('');
+    const [spin, setSpin] = useState(false);
 
     UseTitle('Register');
 
@@ -26,13 +28,12 @@ const Register = () => {
       loop: true,
       autoplay: true, 
       animationData: animationData,
-    //   rendererSettings: {
-    //     preserveAspectRatio: 'xMidYMid slice'
-    //   }
     };
 
 
     const handleSignUp = (data) => {
+        setSpin(true);
+        setSignUPError('');
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image',image);
@@ -43,7 +44,7 @@ const Register = () => {
         .then(res=>res.json())
         .then(imagedata=> {
             if(imagedata.success){
-                setSignUPError('');
+                
             createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -56,12 +57,15 @@ const Register = () => {
                     .then(() => {
                         saveUser(data.name, data.email,imagedata.data.url,data.type,data.phone);
                         setLoading(false)
+                        setSpin(false)
+                        navigate('/')
                     })
                     .catch(err => console.log(err));
             })
             .catch(error => {
                 console.log(error)
                 setSignUPError(error.message)
+                setSpin(false)
             });
         }
     })
@@ -108,16 +112,18 @@ const Register = () => {
             setSignUPError('');
             const user = result.user;
             saveUser(user.displayName, user.email, user.photoURL);
+            navigate('/')
         })
         .catch(err => {
             setSignUPError(err.message)
+
         })
     }
 
     
     return (
         <div>
-            <h1 className='text-7xl font-bold font-serif text-center text-yellow-100 mb-32 pt-24'>Welcome to the Register page</h1>
+            <h1 className='text-7xl font-bold font-serif text-center  mb-32 pt-24'>Welcome to the Register page</h1>
             <div className='grid lg:grid-cols-2 gap-8 p-8 items-center justify-center lg:w-[85%] mx-auto'>
                 <div className='sm:mb-5'>
                     <Lottie options={defaultOptions}></Lottie>
@@ -133,7 +139,7 @@ const Register = () => {
                     </div>
 
 
-                    <div className="form-control w-full">
+                    <div onChange={(event)=>setInfo(event.target.value)} className="form-control w-full">
                         <label className="label"> <span className="label-text">Email</span></label>
                         <input type="email" {...register("email", {
                             required: true
@@ -143,7 +149,7 @@ const Register = () => {
 
                     <div className="form-control w-full">
                         <label className="label"> <span className="label-text">Phone</span></label>
-                        <input type="email" {...register("phone", {
+                        <input type="tel" {...register("phone", {
                             required: "phone number is required"
                         })} className="input input-bordered w-full" />
                         {errors.phone && <p className='text-red-500'>{errors.phone.message}</p>}
@@ -181,10 +187,10 @@ const Register = () => {
                     </div>
 
 
-                    <input className='btn btn-accent w-full mt-4' value="Sign Up" type="submit" />
+                    <input className={`btn btn-accent w-full mt-4`} value='Sign Up' type="submit" disabled={spin || !info ? true : false}/>
                     {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
-                <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
+                <p>Already have an account <Link className='text-secondary' to="/login">plz login</Link></p>
                 <div className="divider">OR</div>
                 <button onClick={googleSignUp} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
                 </div>

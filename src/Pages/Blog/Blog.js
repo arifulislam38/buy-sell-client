@@ -8,48 +8,37 @@ const Blog = () => {
     return (
         <div className='pt-28 px-10'>
             <div className=' p-4 text-start flex flex-col gap-5'>
-                <h1 className='text-4xl font-serif font-semibold'>Question: Difference between SQL and NoSQL</h1>
+                <h1 className='text-4xl font-serif font-semibold'>Question: What are the different ways to manage a state in a React application?</h1>
                 <p className='text-2xl'>
-                    <span className='text-yellow-50 mb-2'>What is SQL?</span> <br />
-                    SQL stands for 'Structured Query Language'. It is the most common programming language used for executing queries, and handling data by using CRUD create, read, update and delete operation on a Relational Database Management System RDMS like MySQL, PostgreSQL, etc. <br /><br />
+                    In React apps, there are at least seven ways to handle the state. Let us briefly explore a few of them in this part.
+                    <br />
 
-                    <span className='text-yellow-50 mb-2'>When to Use SQL?</span> <br />
-                    SQL databases are cross-platform, more secure, free, and open source with better and stronger community support. These types of databases are a much better option when 
-
-                    Your primary focus is on data consistency, validity, and data integrity
-
-                    You need to execute dynamic and complex queries to retrieve data
-
-                    You have predefined data and defined SQL structure or schemas, which don't change with the data
+                    <ul style={{"listStyleType": "number"}}>
+                        <li>URL <br />
+                        We can use URL to store some data</li>
+                        <li>Web Storage
+                        The second option is to store the state in the browser via web storage. This is useful when we want to persist state between reloads and reboots. Examples include cookies, local storage, and IndexedDB. These are native browser technologies.</li>
+                        <li>Local State
+                        The third option is to use store state locally. It is useful when one component needs the state. </li>
+                        <li>Lifted State
+                        The Fourth option is to define the state in the parent component. Often, the same state is used across multiple components. In those cases, it is useful to lift the state to a common parent. </li>
+                        <li>Derived State
+                        The fifth option is to compute the new state based on the available state and we do not need to declare a state at all. If there are existing values that can be composed to give us the information we need, then we can calculate that information on each render instead of storing it.</li>
+                        
+                    </ul> 
                 </p>
             </div>
             <hr className='text-yellow-200 mb-10'/>
 
 
             <div className=' p-4 text-start flex flex-col gap-5'>
-                <h1 className='text-4xl font-serif font-semibold'>Question: What is JWT, and how does it work?</h1>
+                <h1 className='text-4xl font-serif font-semibold'>Question: How does prototypical inheritance work?</h1>
                 <p className='text-2xl'>
-                    <span className='text-yellow-50 mb-2'>What is JWT?</span> <br />
-                    JWT, or JSON Web Token, is an open standard used to share security information between two parties — a client and a server. Each JWT contains encoded JSON objects, including a set of claims. JWTs are signed using a cryptographic algorithm to ensure that the claims cannot be altered after the token is issued. <br /><br />
+                    JavaScript is a bit confusing for developers experienced in class-based languages (like Java or C++), as it is dynamic and does not have static types.
 
-                    <span className='text-yellow-50 mb-2'>how JWT Works?</span> <br />
-                    JWTs differ from other web tokens in that they contain a set of claims. Claims are used to transmit information between two parties. What these claims are depends on the use case at hand. For example, a claim may assert who issued the token, how long it is valid for, or what permissions the client has been granted.
+                    When it comes to inheritance, JavaScript only has one construct: objects. Each object has a private property which holds a link to another object called its prototype. That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. By definition, null has no prototype, and acts as the final link in this prototype chain. It is possible to mutate any member of the prototype chain or even swap out the prototype at runtime, so concepts like static dispatching do not exist in JavaScript.
 
-                    A JWT is a string made up of three parts, separated by dots , and serialized using base64. In the most common serialization format, compact serialization, the JWT looks something like this: xxxxx.yyyyy.zzzzz.
-                </p>
-            </div>
-            <hr className='text-yellow-200 mb-10'/>
-
-
-
-            <div className=' p-4 text-start flex flex-col gap-5'>
-                <h1 className='text-4xl font-serif font-semibold'>Question: What is the difference between javascript and NodeJS?</h1>
-                <p className='text-2xl'>
-                    <span className='text-yellow-50 mb-2'>What is JavaScript?</span> <br />
-                    JavaScripts first version was launched in 1995 and it was developed by Brendan Eich of Netscape then called LiveScript. As discussed earlier, JavaScript is a high-level programming language that has all the functionalities normally a programming language has. JavaScript is an Object-oriented programming language that can be used on the client-side as well as on the server-side and developers not only use it for creating web pages but also it is used for game development and mobile app development. <br /><br />
-
-                    <span className='text-yellow-50 mb-2'>What is Node.js?</span> <br />
-                    Node.js was first introduced in 2009 developed by Ryan Dahl and is a runtime environment for JavaScript built on Google’s v8 engine whose main purpose is to run JavaScript on the server and hence JavaScript can be executed outside of the browser. The nicest part about Node.js is that it never blocks I/O, is event-driven, and can be used to create highly scalable apps. In Node.js everything is a module and using these modules developers make use of Node.js in creating web APIs, Rest API servers, command-line applications, and real-time chat applications.
+                    While this confusion is often considered to be one of JavaScript's weaknesses, the prototypical inheritance model itself is, in fact, more powerful than the classic model. It is, for example, fairly trivial to build a classic model on top of a prototypical model — which is how classes are implemented.
                 </p>
             </div>
             <hr className='text-yellow-200 mb-10'/>
@@ -57,12 +46,32 @@ const Blog = () => {
 
 
             <div className=' p-4 text-start flex flex-col gap-5'>
-                <h1 className='text-4xl font-serif font-semibold'>Question: How does NodeJS handle multiple requests at the same time?</h1>
+                <h1 className='text-4xl font-serif font-semibold'>Question: What is a unit test? Why should we write unit tests?</h1>
+                <p className='text-2xl'>
+                    <span className='text-yellow-50 mb-2'>What is a unit test?</span> <br />
+                    Unit tests are simple scripts that check whether a given unit—class, function, module, etc.—is working as expected. They are meant to be rather simple, to cover the happy path of the code plus a few edge cases. They contribute to the long-term success of a project because of the reasons  <br /><br />
+
+                    <span className='text-yellow-50 mb-2'>Why should we write unit tests?</span> <br />
+                    Writing unit tests makes me think about edge cases—all the situations that are rare, unexpected, or wrong. When you write the logic, it’s normal to focus on the happy path, or what’s normal and expected to happen. When you write tests, you can set up checks for the edge cases and define what should happen in each of them. This makes your code more resilient in cases of unexpected inputs.
+                    <br /><br />
+                    When you add unit tests to your code, you see what is easy to test and what is not. As your code grows in size and complexity, tests will force you to break it into manageable pieces. This is great because it will help you take the quality of your code to the next level. Every segment that received excessive responsibilities will require exponentially more complicated unit tests. In those cases, it's a good idea to stop and rethink how you organize your logic.
+                </p>
+            </div>
+            <hr className='text-yellow-200 mb-10'/>
+
+
+
+            <div className=' p-4 text-start flex flex-col gap-5'>
+                <h1 className='text-4xl font-serif font-semibold'>Question: React vs. Angular vs. Vue?</h1>
                 <p className='text-2xl'>
                     
-                    The operating system gives each socket connection a send and receive queue. That is where the bytes sit until something at the application layer handles them. If the receive queue fills up no connected client can send information until there is space available in the queue. This is why an application should handle requests as fast as possible.
+                    React <br /><br />
+                    React is the JavaScript library of User Interfaces. It is build single-page applications and also allows you to create reusable UI components. It is a front-end JavaScript framework, created by Facebook in 2011. The initial version (V0.3.0) was released in July 2013. The latest version is V5.0.1. It has a size of 31.8K. This complete guide on How To Learn ReactJS: A Complete Guide For Beginners will help in making your transition towards React if you’re a beginner. <br /><br />
+                    Angular <br /><br />
+                    Angular, developed by Google, was released in the year 2010. It is a TypeScript-based framework that uses a regular DOM. Angular provides a set of tools using which a complex, reactive UI can be built. It is primarily aimed at creating SPAs (Single Page Applications) and performs various operations such as routing, state management, PWA, testing, and building, having a size of 143K. <br /><br />
 
-                    If you are on a *nix system you can use netstat to view the current number of bytes in the send and receive queues. In this example, there are 0 bytes in the receive queue and 240 bytes in the send queue waiting to be sent out by the OS. 
+                    Vue <br /><br />
+                    Vue was developed by a former Google employee and was released in the year 2014. It was developed to make the best version of Angular and make a custom tool. It is used for developing single-page engaging and high-quality web applications. It lets you extend directives (HTML with HTML attributes), and also provides built-in directives and user-defined directives. It is the lightest framework having a size of 23K.
                 </p>
             </div>
             <hr className='text-yellow-200 mb-10'/>

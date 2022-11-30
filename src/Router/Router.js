@@ -15,8 +15,10 @@ import Login from "../Pages/Login/Login";
 import MyBuyers from "../Pages/MyBuyers/MyBuyers";
 import MyOrders from "../Pages/MyOrders/MyOrders";
 import MyProducts from "../Pages/MyProducts/MyProducts";
+import Payment from "../Pages/Payment/Payment";
 import Register from "../Pages/Register/Register";
 import ReportedProducts from "../Pages/ReportedProduct/ReportedProducts";
+import WishList from "../Pages/WishList/WishList";
 
 const router = createBrowserRouter([
     {
@@ -46,8 +48,14 @@ const router = createBrowserRouter([
                 element: <Blog></Blog>
             },
             {
+                path: '/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params})=> fetch(`${process.env.REACT_APP_API}/orders/${params.id}`) 
+            },
+            {
                 path: '/dashboard',
                 element: <PrivateAccess><Dashboard></Dashboard></PrivateAccess>,
+                errorElement: <ErrorPage></ErrorPage>,
                 children: [
                     {
                         path: '/dashboard/allusers',
@@ -80,7 +88,11 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/myproducts',
                         element: <MyProducts></MyProducts>
-                    }
+                    },
+                    {
+                        path: '/dashboard/wishlist',
+                        element: <WishList></WishList>
+                    },
                 ]
             }
         ]
